@@ -49832,15 +49832,87 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/sass/datail.scss":
+/*!************************************!*\
+  !*** ./resources/sass/datail.scss ***!
+  \************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ "./resources/sass/post.scss":
+/*!**********************************!*\
+  !*** ./resources/sass/post.scss ***!
+  \**********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ "./resources/sass/post_all.scss":
+/*!**************************************!*\
+  !*** ./resources/sass/post_all.scss ***!
+  \**************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ "./resources/sass/reviews.scss":
+/*!*************************************!*\
+  !*** ./resources/sass/reviews.scss ***!
+  \*************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ "./resources/sass/shop.scss":
+/*!**********************************!*\
+  !*** ./resources/sass/shop.scss ***!
+  \**********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ "./resources/sass/user.scss":
+/*!**********************************!*\
+  !*** ./resources/sass/user.scss ***!
+  \**********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
 /***/ 0:
-/*!*************************************************************!*\
-  !*** multi ./resources/js/app.js ./resources/sass/app.scss ***!
-  \*************************************************************/
+/*!****************************************************************************************************************************************************************************************************************************************!*\
+  !*** multi ./resources/js/app.js ./resources/sass/app.scss ./resources/sass/shop.scss ./resources/sass/post.scss ./resources/sass/user.scss ./resources/sass/post_all.scss ./resources/sass/reviews.scss ./resources/sass/datail.scss ***!
+  \****************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! /work/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /work/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /work/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /work/resources/sass/shop.scss */"./resources/sass/shop.scss");
+__webpack_require__(/*! /work/resources/sass/post.scss */"./resources/sass/post.scss");
+__webpack_require__(/*! /work/resources/sass/user.scss */"./resources/sass/user.scss");
+__webpack_require__(/*! /work/resources/sass/post_all.scss */"./resources/sass/post_all.scss");
+__webpack_require__(/*! /work/resources/sass/reviews.scss */"./resources/sass/reviews.scss");
+module.exports = __webpack_require__(/*! /work/resources/sass/datail.scss */"./resources/sass/datail.scss");
 
 
 /***/ })
