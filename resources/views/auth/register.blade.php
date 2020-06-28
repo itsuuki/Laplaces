@@ -40,6 +40,42 @@
                         </div>
 
                         <div class="form-group row">
+                        <label for="photo" class="col-md-4 col-form-label text-md-right" id="user-lab">
+                            photo 
+                        </label>
+                        <div class="login-word">
+                            Any
+                        </div>
+                        <div class="col-md-6">
+                        <input
+                        id="uphoto"
+                        name="uphoto"
+                        class="uphoto {{ $errors->has('uphoto') ? 'is-invalid' : '' }}"
+                        value="{{ old('uphoto') }}"
+                        type="text"
+                        >
+                        </div>
+                        </div>
+
+                        <div class="form-group row">
+                        <label for="region" class="col-md-4 col-form-label text-md-right user-leb" id="user-lab">
+                            region
+                        </label>
+                        <div class="login-word">
+                            Any
+                        </div>
+                        <div class="col-md-6">
+                        <input
+                        id="uregion"
+                        name="uregion"
+                        class="uregion {{ $errors->has('uregion') ? 'is-invalid' : '' }}"
+                        value="{{ old('uregion') }}"
+                        type="text"
+                        >
+                        </div>
+                        </div>
+
+                        <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
                             <div class="col-md-6">

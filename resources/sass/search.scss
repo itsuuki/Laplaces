@@ -1,13 +1,9 @@
-// Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
-
-// Variables
-@import 'variables';
-
-// Bootstrap
-@import '~bootstrap/scss/bootstrap';
-
 $tl: 0.6s; // transition length
+
+
+body {
+  margin: 5%;
+}
 
 .search-box {
   transition: width $tl, border-radius $tl, background $tl, box-shadow $tl;
