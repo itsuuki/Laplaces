@@ -187,6 +187,38 @@ $(function () {
     ;
   });
 });
+$(function () {
+  $('.deleteTarget-post').on('click', function () {
+    var deleteConfirm = confirm('削除してよろしいでしょうか？');
+
+    if (deleteConfirm == true) {
+      var clickEle = $(this);
+      console.log(clickEle);
+      var postID = clickEle.attr('data-post-id');
+      $.ajax({
+        headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        url: '/Post/' + postID,
+        type: 'POST',
+        data: {
+          'id': postID,
+          '_method': 'DELETE'
+        }
+      }).done(function () {
+        clickEle.parent().remove();
+      }).fail(function () {
+        alert('エラー');
+      });
+    } else {
+      (function (e) {
+        e.preventDefault();
+      });
+    }
+
+    ;
+  });
+});
 
 /***/ }),
 

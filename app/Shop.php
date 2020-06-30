@@ -36,6 +36,11 @@ class Shop extends Model
         return $this->hasMany('App\Post');
     }
 
+    public function orders()
+    {
+        return $this->hasMany('App\Order');
+    }
+
     public function users()
     {
         return $this->belongsToMany('App\User', 'favorites', 'shop_id', 'user_id');

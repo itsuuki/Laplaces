@@ -15,6 +15,8 @@ use App\Image;
 
 use App\Post;
 
+use App\Order;
+
 use App\Reservation;
 
 use App\Commodity;
@@ -43,117 +45,34 @@ class UserController extends Controller
             array_push($images,$image);
         }
 
-
-        $reservations = Reservation::where('user_id', $id)->latest()->get();
-        $re = $reservations->groupBy('shop_id');
-        echo var_dump($re);
-        $shop_id = $re->pluck('shop_id');
-        // $cc = $reservations->pluck('created_at');
-        // $shop_id = $shops_id->unique();
-        $res_shops = array();
-        foreach ($shop_id as $sh_id) {
-            $shop = Shop::where('id', $sh_id)->get();
-
-            array_push($res_shops,$shop);
-        }
-        $commodities = array();
-        $commodity_id = $reservations->pluck('commodity_id');
-        foreach ($commodity_id as $com_id) {
-            $commodity = Commodity::where('id', $com_id)->get();
-            array_push($commodities,$commodity);
-        }
-
-
-
-
-        // $reservations = DB::table('reservations')->where('user_id', $id)->latest()->get();
-        // // echo var_dump($res);
-        // // $res = $res->groupBy('created_at');
-        
-        // // $a = $res->select('shop_id');
-        // // array_unique([$res]);
-        // $res_shops = array();
-        // foreach ($reservations->groupBy('shop_id.created_at') as $re) {
-        //     // $re = $reserva->groupBy('shop_id.created_at');
-        //     // echo var_dump($re);
-        //     // $reg = get_object_vars($re);
-        //     // $res = $re->groupBy('shop_id');
-        //     // echo var_dump($res);
-        //     $shop_id = $re->pluck('shop_id');
-        //     // echo var_dump($shop_id);
-        //     // echo var_dump($shop_id);
-        //     // $cc = $reservations->pluck('created_at');
-        //     // $shop_id = $shops_id->unique();
-        //     // $res_shop = array();
-        //     foreach ($shop_id as $sh_id) {
-        //         $shop = Shop::where('id', $sh_id)->get();
-
-        //         // array_push($res_shop, $shop);
-        //     }
-        //     array_push($res_shops, $shop);
-        // }
-        // // echo var_dump($res_shops);
-
-        // $commodities = array();
-        // $commodity_id = $re->pluck('commodity_id');
-        // foreach ($commodity_id as $com_id) {
-        //     $commodity = Commodity::where('id', $com_id)->get();
-        //     array_push($commodities,$commodity);
-        // }
-        // // echo var_dump($res);
-
-
-
-
-
-
-        // $vc = $reservations->select('id', 'created_at')->get()->groupBy(DB::raw('CAST(created_at AS DATE)'));
-        // echo var_dump($vc);
-        // $reserva = DB::table('reservations')->where('user_id', $id);
-        // $reserva = Reservation::where('user_id', $id)->get();
-        // $res = $reserva->select('created', DB::raw('count() as `count`, created_at'))->groupBy('created')->get();
-        // $res = $reserva->select('user_id')->groupBy('created_at')->get();
-        // $reser = $reserva->where('id', $id)->get();
-        // $shops_id = $reserva->pluck('shop_id');
-        
-        // echo var_dump($res);
-        // $re = $res->select('commodity_id')->get();
-        // $jhg = array();
-        // foreach ($res as $re) {
-        //     $reg = get_object_vars($re);
-        //     // echo var_dump($reg);
-        //     $gfd = Reservation::where('created_at', $reg)->get();
-        //     // echo var_dump($gfd);
-        //     array_push($jhg,$gfd);
-        //     $shop_id = $gfd->pluck('shop_id');
-        // // $cc = $reservations->pluck('created_at');
-        // // $shop_id = $shops_id->unique();
-        //     $res_shops = array();
-            // foreach ($shop_id as $sh_id) {
-            //     $shop = Shop::where('id', $sh_id)->get();
-
-            //     array_push($res_shops,$shop);
-            // }
-            // echo var_dump($res_shops);
-        // }
-        // echo var_dump($jhg);
-        // $commodities = array();
-        // foreach ($jhg as $kjh){
-        //     $commodity_id = $kjh->pluck('commodity_id');
-        //     // $commodity_id = $reservations->pluck('commodity_id');
-        //     foreach ($commodity_id as $com_id) {
-        //         $commodity = Commodity::where('id', $com_id)->get();
-        //         array_push($commodities,$commodity);
-        //     }
-        // }
-        
-        
-
+        $reser_shops = DB::table('reservations')
+        ->join('users', 'reservations.user_id', '=', 'users.id')
+        ->join('shops', 'reservations.shop_id', '=', 'shops.id')
+        ->select('users.id', 'shops.sname', 'shops.created_at')
+        ->groupBy('users.id', 'shops.sname', 'shops.created_at')
+        ->where('users.id', $id)
+        ->latest('shops.created_at')
+        ->get();
+        $commodities = DB::table('reservations')
+        ->join('users', 'reservations.user_id', '=', 'users.id')
+        ->join('shops', 'reservations.shop_id', '=', 'shops.id')
+        ->join('commodities', 'reservations.commodity_id', '=', 'commodities.id')
+        ->select('users.id', 'shops.sname', 'commodities.name', 'reservations.id', 'reservations.remark', 'reservations.created_at')
+        ->groupBy('users.id', 'shops.sname', 'commodities.name', 'reservations.id', 'reservations.remark', 'reservations.created_at')
+        ->where('users.id', $id)
+        ->latest('reservations.created_at')
+        ->get();
+        $reservations = DB::table('reservations')
+        ->join('users', 'reservations.user_id', '=', 'users.id')
+        ->join('shops', 'reservations.shop_id', '=', 'shops.id')
+        ->select('users.id', 'shops.sname', 'reservations.form', 'reservations.day', 'reservations.month', 'reservations.hour', 'reservations.minute', 'reservations.people', 'reservations.created_at')
+        ->groupBy('users.id', 'shops.sname', 'reservations.form', 'reservations.day', 'reservations.month', 'reservations.hour', 'reservations.minute', 'reservations.people', 'reservations.created_at')
+        ->where('users.id', $id)
+        ->latest('reservations.created_at')
+        ->get();
 
         $favorites = Favorite::where('user_id', $id)->get();
         $favorite_id = $favorites->pluck('shop_id');
-        // $judge=array_filter($favorite);
-        // echo var_dump($favorite);
         $fav_shops = array();
         if (count($favorite_id) === 0) {
             $fav_shops = null;
@@ -162,11 +81,8 @@ class UserController extends Controller
                 $fav_shop = Shop::where('id', $favorite)->get();
                 array_push($fav_shops, $fav_shop);
             }
-            // echo var_dump($fav_shop);
         }
-        // echo var_dump($fav_shops);
-        return view("user.show", ['user' => $user, 'shops'=> $shops, 'id' => $id, 'posts' => $posts, 'images'=> $images, 'commodities' => $commodities, 'reservations' => $reservations, 'res_shops' => $res_shops, 'fav_shops' => $fav_shops]);
-        // $commodities = Commodity::all();
+        return view("user.show", ['user' => $user, 'shops'=> $shops, 'id' => $id, 'posts' => $posts, 'images'=> $images, 'reservations' => $reservations, 'commodities' => $commodities, 'reser_shops' => $reser_shops, 'fav_shops' => $fav_shops]);
     }
     public function edit($id)
     {
@@ -179,13 +95,13 @@ class UserController extends Controller
             'name' => 'required|max:50',
             'email' => 'email',
             'uregion' => 'required|max:100',
-            'uphoto' => 'required | numeric | digits_between:8,11',
+            // 'uphoto' => 'required | numeric | digits_between:8,11',
         ],
         [
             'name.required' => '名前は必須です。',
             'email.required' => 'メールアドレスは必須です。',
             'uregion.required' => '住所は必須です。',
-            'uphoto.required' => '電話番号は必須です。',
+            // 'uphoto.required' => '電話番号は必須です。',
         ]);
         $value = User::findOrFail($request->id);
         $value->fill($request->all())->save();

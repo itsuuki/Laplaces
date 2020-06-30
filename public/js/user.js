@@ -101,6 +101,14 @@ $(function () {
     $(this).toggleClass("open");
   });
 });
+$(function () {
+  //.accordion_oneの中の.accordion_headerがクリックされたら
+  $('.reser-accode .reser_one .reser_header').click(function () {
+    //クリックされた.accordion_oneの中の.accordion_headerに隣接する.accordion_innerが開いたり閉じたりする。
+    $(this).next('.reser_inner').slideToggle();
+    $(this).toggleClass("open");
+  });
+});
 $(document).ready(function () {
   var scrollTop = $(".scrollTop");
   $(window).scroll(function () {

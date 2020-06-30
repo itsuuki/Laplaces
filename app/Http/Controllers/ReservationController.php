@@ -14,6 +14,8 @@ use App\User;
 
 use App\Reservation;
 
+use App\Order;
+
 use Carbon\Carbon;
 
 class ReservationController extends Controller
@@ -28,16 +30,23 @@ class ReservationController extends Controller
         $minutes = range(0, 60);
         $shop = Shop::find($shop_id);
         $commodity = Commodity::where('shop_id', $shop_id)->get();
-        $coms = $commodity->pluck('id');
-        // echo var_dump($coms);
-        $commodities = collect($commodity)->count();
-        $image = Image::where('commodity_id', $coms)->get();
+        // if ($commodity === null) {
+            $coms = $commodity->pluck('id');
+            // echo var_dump($coms);
+            $commodities = collect($commodity)->count();
+            $image = Image::where('commodity_id', $coms)->get();
+        // } else {
+        //     $coms = null;
+        //     $commodities = null;
+        //     $image = null;
+        // }
         return view('reservation.create', ['image' => $image, 'commodity' => $commodity, 'shop_id' => $shop_id, 'commodities' => $commodities, 'coms' => $coms, 'shop' => $shop, 'months' => $months, 'days' => $days, 'hours' => $hours, 'minutes' => $minutes]);
     }
 
     public function store(Request $request)
     {
         $i = 0;
+        $order = new Order;
         foreach ($request->num as $val) {
             // echo var_dump($request->ids);
             $reser = new Reservation;
@@ -55,7 +64,14 @@ class ReservationController extends Controller
             }
             $reser->save();
             $i++;
+            $order->commodity_id = $reser->commodity_id;
+            $order->reservation_id = $reser->id;
+            $order->shop_id = $request->idsss;
+            $order->user_id = $request->user()->id;
+            $order->save();
         }
+        // $order->save();
+
         return redirect('/home');
     }
 

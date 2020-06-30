@@ -10,13 +10,13 @@
 <form method="POST" action="{{route('Reservation.store')}}" enctype="multipart/form-data">
     {{ csrf_field() }}
     <select name="form" class="select" id="select-box1">
-        @if ($shop->take_out === "ãã")
+        @if ($shop->take_out === "あり")
           <option value="テイクアウト">テイクアウト</option>
         @endif
-        @if ($shop->store_in === "ãã")
+        @if ($shop->store_in === "あり")
           <option value="店内">店内</option>
         @endif
-        @if ($shop->delivery === "ãã")
+        @if ($shop->delivery === "あり")
           <option value="デリバリー">デリバリー</option>
         @endif
     </select>
