@@ -1,6 +1,7 @@
 @extends('layouts.app')
 <link rel="stylesheet" href="{{ mix('css/user.css') }}">
 <script src="{{ asset('/js/user.js') }}" defer></script>
+<script src="{{ asset('/js/delete-com.js') }}" defer></script>
 @section('content')
 <div class="all">
 <div class="user-post-page">
@@ -86,8 +87,9 @@
                 <div class="card-header">
                   {{$shop->sname}}
                 </div>
-                  @foreach ($posts as $post)
-                      @if ($shop->id === $post->shop_id)
+                @foreach ($posts as $post)
+                @if ($shop->id === $post->shop_id)
+                    <div class = "post-oya">
                           <div class="card-body">
                               <p class="card-text">
                                   {{ $post->post }}
@@ -102,12 +104,11 @@
                                   @endif
                               @endforeach
                           @endforeach
-                          <form action="{{ action('PostController@destroy', $post->id) }}" id="form_{{ $post->id }}" method="post">
-                            {{ csrf_field() }}
-                            {{ method_field('delete') }}
-                            <a href="#" data-id="{{ $post->id }}" class="btn btn-danger btn-sm" onclick="deletePost(this);">削除</a>
-                          </form>
+                            <a class="deleteTarget-post" id="deleteTarget-post" data-post-id="{{$post->id}}">
+                              削除
+                            </a>
                           <div class="line"></div>
+                        </div>
                           @endif
                       @endforeach
                   </div>
@@ -116,33 +117,61 @@
 
 
       <div class="tab_item" id="item2">
-      @foreach ($reservations as $reservation)
-      @foreach ($res_shops as $res_shop)
-      @foreach ($res_shop as $re_sh)
-          <div class="card mb-4">
-            <div class="card-header">
-              {{$re_sh->sname}}
+
+      <div class="section reser-accode">
+        <div class="reser_one">
+          <div class="reser_header">一覧<div class="i_box"><i class="one_i"></i></div></div>
+          <div class="reser_inner">
+            <div class="reser_one">
+              @foreach ($reser_shops as $reser_shop)
+                <div class="reser_header">{{$reser_shop->sname}}<div class="i_box"><i class="one_i"></i></div></div>
+                <div class="reser_inner">
+                  <div class="reser_one">
+                  @foreach ($reservations as $reservation)
+                    @if ($reser_shop->sname === $reservation->sname)
+                      <div class="reser_header">{{ $reservation->created_at }}<div class="i_box"><i class="one_i"></i></div></div>
+                      <div class="reser_inner">
+                        <div class="reser_one">
+                          <div class="reser_header">
+                            <div class="reser-top-items">
+                            <div class="reser-time">
+                            注文日付{{ $reservation->month }}月{{ $reservation->day }}日{{ $reservation->hour }}時{{ $reservation->minute }}分
+                            </div>
+                            <div class="reser-form">
+                            種類{{ $reservation->form }}
+                            </div>
+                            <div class="reser-people">
+                            @if ($reservation->people !== null)
+                            人数{{ $reservation->people }}人
+                            @else
+                            人数0人
+                            @endif
+                            </div>
+                            @foreach ($commodities as $commodity)
+                            @if ($commodity->created_at === $reservation->created_at)
+                                <div class="reser-name">
+                                {{ $commodity->name }} {{ $commodity->remark }}個
+                                </div>
+                              @endif
+                            @endforeach</div></div>
+                          <div class="reser_header">chat</div>
+                        </div>
+                      </div>
+                    @endif
+                  @endforeach
+                  </div>
+                </div>
+                </div>
+              @endforeach
             </div>
-            @foreach ($commodities as $commodity)
-            @foreach ($commodity as $com)
-            
-            <div class="card-body">
-              <p class="card-text">
-              {{ $com->name }}
-              {{ $com->price }}円
-              
-            </p>
           </div>
-          <div class="card-bodys">
-          
-          </div>
-          @endforeach
-          @endforeach
-          </div>
-          @endforeach
-          @endforeach
-          @endforeach
+        <!-- </div> -->
       </div>
+    </div>
+      <!-- </div> -->
+
+      
+      <!-- </div> -->
 
 
     <div class="tab_item" id="item3">

@@ -21,16 +21,16 @@ class CommodityController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'name[]' => 'required|max:50',
-            'price[]' => 'required|numeric',
-            'image' => 'required|max:200',
-        ],
-        [
-            'name[].required' => '店の名前は必須です。',
-            'price[].required' => '平均金額は必須です。',
-            'image.required' => '写真は必須です。',
-        ]);
+        // $request->validate([
+        //     'name' => 'required|max:50',
+        //     'price' => 'required|numeric',
+        //     'image' => 'required|max:200',
+        // ],
+        // [
+        //     'name.required' => '店の名前は必須です。',
+        //     'price.required' => '平均金額は必須です。',
+        //     'image.required' => '写真は必須です。',
+        // ]);
         $value = Shop::findOrFail($request->id);
         $i = 0;
         foreach ($request->num as $val) {

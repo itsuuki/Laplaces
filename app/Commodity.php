@@ -28,6 +28,11 @@ class Commodity extends Model
         return $this->hasMany('App\Post');
     }
 
+    public function orders()
+    {
+        return $this->hasMany('App\Order');
+    }
+
     public function user()
     {
         return $this->belongsTo('App\User');

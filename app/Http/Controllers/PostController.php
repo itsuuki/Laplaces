@@ -89,14 +89,11 @@ class PostController extends Controller
         return view('post.all', ['posts' => $posts, 'images'=> $images, 'shops'=> $shops, 'ushops'=> $ushops]);
     }
 
-    public function destroy($post_id)
+    public function destroy($id)
     {
         // echo var_dump($post_id);
-        $post = Post::findOrFail($post_id);
+        $post = Post::findOrFail($id);
         $post->delete();
-        $posts = Post::all();
-        $images = Image::all();
-        return view('post.all', ['posts' => $posts, 'images'=> $images]);
     }
 
     public function search(Request $request){
