@@ -1,4 +1,4 @@
-@charset "UTF-8";
+@import url(https://fonts.googleapis.com/css?family=Montserrat);@charset "UTF-8";
 
 @-webkit-keyframes sheen {
   0% {
@@ -103,27 +103,23 @@
   transition: all 0.5s ease-in-out;
 }
 
-.post-top {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.post-select-box {
+.select-box {
   cursor: pointer;
   position: relative;
-  width: 400px;
+  max-width: 20em;
+  margin: 5em auto;
+  width: 100%;
 }
 
-.post-select,
+.select,
 .label {
   color: #414141;
   display: block;
   font: 400 17px/2em "Source Sans Pro", sans-serif;
 }
 
-.post-select {
-  width: 400px;
+.select {
+  width: 100%;
   position: absolute;
   top: 0;
   padding: 5px 0;
@@ -134,14 +130,14 @@
   border: 0 none;
 }
 
-.post-select-box {
+.select-box1 {
   background: linear-gradient(#05FBFF, #1D62F0) fixed;
 }
 
 .label {
   position: relative;
+  padding: 5px 10px;
   cursor: pointer;
-  padding-left: 10px;
 }
 
 .open .label::after {
@@ -156,6 +152,12 @@
   top: 0;
   padding: 5px 15px;
   border-left: 5px solid #fff;
+}
+
+.post-top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .pos-detl {
@@ -202,12 +204,61 @@
 }
 
 .post-label {
-  margin-top: 60px;
   margin-bottom: 30px;
 }
 
 .shop-datail {
   width: calc(100vw - 600px);
+}
+
+.user-shop {
+  color: black;
+}
+
+.posts-index {
+  display: block;
+  padding: 0.6em 0.88em;
+  margin-bottom: 40px;
+  background: linear-gradient(to right, #00CCFF 50%, #fff 50%);
+  background-size: 200% 100.5%;
+  background-position: right bottom;
+  font: 1.25em "Montserrat";
+  color: #020202;
+  border: none;
+  border-left: 0.2em solid #00CCFF;
+  border-color: none;
+  box-shadow: 3px 3px 2px rgba(0, 0, 0, 0.08);
+  transition: all 0.5s ease-out;
+}
+
+.posts-index:hover {
+  background-position: left bottom;
+  color: white;
+}
+
+.shop-index {
+  display: block;
+  padding: 0.6em 0.88em;
+  margin-bottom: 40px;
+  background: linear-gradient(to right, #e66465 50%, #fff 50%);
+  background-size: 200% 100.5%;
+  background-position: right bottom;
+  font: 1.25em "Montserrat";
+  color: #020202;
+  border: none;
+  border-left: 0.2em solid #e66465;
+  border-color: none;
+  box-shadow: 3px 3px 2px rgba(0, 0, 0, 0.08);
+  transition: all 0.5s ease-out;
+}
+
+.shop-index:hover {
+  background-position: left bottom;
+  color: white;
+}
+
+.post-images {
+  display: flex;
 }
 
 .shop-sprice {

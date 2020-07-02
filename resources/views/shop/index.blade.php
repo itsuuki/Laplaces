@@ -5,6 +5,9 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
+        <a class="posts-index" href="/">
+            投稿一覧
+        </a>
             @foreach ($shops as $shop)
                 <div class="card mb-4">
                     <div class="card-header">
