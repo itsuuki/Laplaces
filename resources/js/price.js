@@ -35,6 +35,8 @@ $(function() {
       var total_price = array.pop()
     }
     document.getElementById("total-price").innerHTML = total_price;
+    $('#total-prices').val(total_price);
+    // document.getElementsByName("total_price") = total_price;
     }
   });
 

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\DB;
+
 use App\Image;
 
 use App\Commodity;
@@ -46,29 +48,26 @@ class ReservationController extends Controller
     public function store(Request $request)
     {
         $i = 0;
-        $order = new Order;
         foreach ($request->num as $val) {
             // echo var_dump($request->ids);
             $reser = new Reservation;
-            $reser->remark = $request->remark[$i];
-            $reser->form = $request->form;
-            $reser->month = $request->month;
-            $reser->day = $request->day;
-            $reser->hour = $request->hour;
-            $reser->minute = $request->minute;
-            $reser->user_id = $request->user()->id;
-            $reser->shop_id = $request->idsss;
-            $reser->commodity_id = $request->ids[$i];
-            if ($request->people !== null) {
-                $reser->people = $request->people;
+            if ($request->remark[$i] !== 0) {
+                $reser->remark = $request->remark[$i];
+                $reser->form = $request->form;
+                $reser->month = $request->month;
+                $reser->day = $request->day;
+                $reser->hour = $request->hour;
+                $reser->minute = $request->minute;
+                $reser->total_price = $request->total_price;
+                $reser->user_id = $request->user()->id;
+                $reser->shop_id = $request->idsss;
+                $reser->commodity_id = $request->ids[$i];
+                if ($request->people !== null) {
+                    $reser->people = $request->people;
+                }
+                $reser->save();
             }
-            $reser->save();
             $i++;
-            $order->commodity_id = $reser->commodity_id;
-            $order->reservation_id = $reser->id;
-            $order->shop_id = $request->idsss;
-            $order->user_id = $request->user()->id;
-            $order->save();
         }
         // $order->save();
 
@@ -99,16 +98,32 @@ class ReservationController extends Controller
     public function index($id)
     {
         // echo var_dump($id);
-        $reservations = Reservation::where('shop_id', $id)->get();
-        $commodities = array();
-        $images = array();
-        $commodity_id = $reservations->pluck('commodity_id');
-        foreach ($commodity_id as $com_id) {
-            $commodity = Commodity::where('id', $com_id)->get();
-            $image = Image::where('commodity_id', $com_id)->get();
-            array_push($commodities,$commodity);
-            array_push($images,$image);
-        }
-        return view('reservation/index', ['reservations' => $reservations, 'commodities' => $commodities, 'images' => $images]);
+        // $reservations = Reservation::where('shop_id', $id)->get();
+        $users = DB::table('reservations')
+        ->join('users', 'reservations.user_id', '=', 'users.id')
+        ->join('shops', 'reservations.shop_id', '=', 'shops.id')
+        ->select('shops.id', 'users.name', 'users.created_at')
+        ->groupBy('shops.id', 'users.name', 'users.created_at')
+        ->where('shops.id', $id)
+        ->latest('users.created_at')
+        ->get();
+        $commodities = DB::table('reservations')
+        ->join('users', 'reservations.user_id', '=', 'users.id')
+        ->join('shops', 'reservations.shop_id', '=', 'shops.id')
+        ->join('commodities', 'reservations.commodity_id', '=', 'commodities.id')
+        ->select('shops.id', 'users.name', 'commodities.name', 'reservations.id', 'reservations.remark', 'reservations.created_at')
+        ->groupBy('shops.id', 'users.name', 'commodities.name', 'reservations.id', 'reservations.remark', 'reservations.created_at')
+        ->where('shops.id', $id)
+        ->latest('reservations.created_at')
+        ->get();
+        $reservations = DB::table('reservations')
+        ->join('users', 'reservations.user_id', '=', 'users.id')
+        ->join('shops', 'reservations.shop_id', '=', 'shops.id')
+        ->select('shops.id', 'users.name', 'reservations.form', 'reservations.day', 'reservations.month', 'reservations.hour', 'reservations.minute', 'reservations.people', 'reservations.total_price', 'reservations.created_at')
+        ->groupBy('shops.id', 'users.name', 'reservations.form', 'reservations.day', 'reservations.month', 'reservations.hour', 'reservations.minute', 'reservations.people', 'reservations.total_price', 'reservations.created_at')
+        ->where('shops.id', $id)
+        ->latest('reservations.created_at')
+        ->get();
+        return view('reservation/index', ['reservations' => $reservations, 'commodities' => $commodities, 'users' => $users]);
     }
 }

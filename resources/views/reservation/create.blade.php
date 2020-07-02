@@ -78,6 +78,7 @@
     </div>
     <div class="total-price">
       合計金額<span id="total-price">0</span>円
+      <input type="hidden" id="total-prices" name="total_price" value="0">
     </div>
 
     <a class="btn btn-secondary" href="/">
