@@ -11,6 +11,7 @@
             @else
 
                 <!-- <div class="card-header">一覧</div> -->
+                
                     <a class="shop-index" href="Shop/index">
                         店一覧
                     </a>

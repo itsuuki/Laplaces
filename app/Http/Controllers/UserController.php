@@ -65,8 +65,8 @@ class UserController extends Controller
         $reservations = DB::table('reservations')
         ->join('users', 'reservations.user_id', '=', 'users.id')
         ->join('shops', 'reservations.shop_id', '=', 'shops.id')
-        ->select('users.id', 'shops.sname', 'reservations.form', 'reservations.day', 'reservations.month', 'reservations.hour', 'reservations.minute', 'reservations.people', 'reservations.created_at')
-        ->groupBy('users.id', 'shops.sname', 'reservations.form', 'reservations.day', 'reservations.month', 'reservations.hour', 'reservations.minute', 'reservations.people', 'reservations.created_at')
+        ->select('users.id', 'shops.sname', 'reservations.form', 'reservations.day', 'reservations.month', 'reservations.hour', 'reservations.minute', 'reservations.people', 'reservations.total_price', 'reservations.created_at')
+        ->groupBy('users.id', 'shops.sname', 'reservations.form', 'reservations.day', 'reservations.month', 'reservations.hour', 'reservations.minute', 'reservations.people', 'reservations.total_price', 'reservations.created_at')
         ->where('users.id', $id)
         ->latest('reservations.created_at')
         ->get();

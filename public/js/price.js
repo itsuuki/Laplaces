@@ -122,6 +122,7 @@ $(function () {
       }
 
       document.getElementById("total-price").innerHTML = total_price;
+      $('#total-prices').val(total_price); // document.getElementsByName("total_price") = total_price;
     }
   });
   $('.select').change(function () {

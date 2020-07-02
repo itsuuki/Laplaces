@@ -147,10 +147,14 @@
                             人数0人
                             @endif
                             </div>
+                            <div class="reser-total_price">
+                            合計金額{{ $reservation->total_price }}円
+                            </div>
                             @foreach ($commodities as $commodity)
                             @if ($commodity->created_at === $reservation->created_at)
                                 <div class="reser-name">
                                 {{ $commodity->name }} {{ $commodity->remark }}個
+                                
                                 </div>
                               @endif
                             @endforeach</div></div>
