@@ -9,7 +9,7 @@
 
 
       <div class="select-box">
-        <label for="select-box1" class="label select-box1"><span class="label-desc">Choose a review</span></label>
+        <label for="select-box1" class="label select-box1"><span class="label-desc">Choose review</span></label>
         <select name="evaluation" class="select" id="select-box1">
           <option value="1">1(よくない)</option>
           <option value="2">2(あまりよくない)</option>
@@ -35,12 +35,11 @@
     
 <input type="hidden" name="id" value="{{$shop_id->id}}">
 
-<div class="review-submit-btn">
-<a class="btn btn-secondary" href="/">
+<div class="wrapper">
+<a class="review-can" href="/">
     キャンセル
 </a>
-
-<button type="submit" class="btn btn-primary">
+<button type="submit" class="review-cre">
     登録する
 </button>
 </div>

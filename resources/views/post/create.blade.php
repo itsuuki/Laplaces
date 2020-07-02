@@ -5,9 +5,9 @@
 <form method="POST" action="{{route('Post.store')}}" enctype="multipart/form-data">
   {{ csrf_field() }}
   <div class="post-top">
-    <div class="post-select-box">
-      <label for="post-select-box" class="label post-select-box"><span class="label-desc">Choose a shop</span></label>
-      <select name="shop_n" class="post-select" id="post-select-box">
+    <div class="select-box">
+        <label for="select-box1" class="label select-box1"><span class="label-desc">Choose shop</span></label>
+        <select name="shop_n" class="select" id="select-box1">
         @foreach ($shops as $shop)
           <option value="{{ $shop->id }}">{{ $shop->sname }}</option>
         @endforeach

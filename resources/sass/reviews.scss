@@ -1,4 +1,96 @@
 @charset "UTF-8";
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro);
+$color1: blue;
+$color2: red;
+
+@keyframes sheen {
+  0% {
+    transform: skewY(-45deg) translateX(0);
+  }
+  100% {
+    transform: skewY(-45deg) translateX(12.5em);
+  }
+}
+
+.wrapper {
+  display: flex;
+}
+
+.review-cre {
+  padding: 0.75em 2em;
+  text-align: center;
+  text-decoration: none;
+  color: $color1;
+  border: 2px solid $color1;
+  font-size: 15px;
+  display: inline-block;
+  border-radius: 0.3em;
+  transition: all 0.2s ease-in-out;
+  position: relative;
+  overflow: hidden;
+  background-color: white;
+  &:before {
+    content: "";
+    background-color: rgba(255,255,255,0.5);
+    height: 100%;
+    width: 3em;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: -4.5em;
+    transform: skewX(-45deg) translateX(0);
+    transition: none;
+    
+  }
+  &:hover {
+    background-color: $color1;
+    color: #fff;
+    border-bottom: 4px solid darken($color1, 10%);
+    &:before {
+      transform: skewX(-45deg) translateX(13.5em);
+     transition: all 0.5s ease-in-out;
+    }
+  }
+}
+
+
+.review-can {
+  background-color: white;
+  margin-right: 30px;
+  padding: 0.75em 2em;
+  text-align: center;
+  text-decoration: none;
+  color: $color2;
+  border: 2px solid $color2;
+  font-size: 15px;
+  display: inline-block;
+  border-radius: 0.3em;
+  transition: all 0.2s ease-in-out;
+  position: relative;
+  overflow: hidden;
+  &:before {
+    content: "";
+    background-color: rgba(255,255,255,0.5);
+    height: 100%;
+    width: 3em;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: -4.5em;
+    transform: skewX(-45deg) translateX(0);
+    transition: none;
+    
+  }
+  &:hover {
+    background-color: $color2;
+    color: #fff;
+    border-bottom: 4px solid darken($color2, 10%);
+    &:before {
+      transform: skewX(-45deg) translateX(13.5em);
+     transition: all 0.5s ease-in-out;
+    }
+  }
+}
 .rate {
   position: relative;
   display: inline-block;
@@ -82,15 +174,12 @@
   width: 600px;
   height: 200px;
   margin-bottom: 50px;
+  background-color: white;
+  color: black;
+  box-shadow:5px 5px 0px -2px;
+  border:1px solid #000;
+  margin-bottom: 60px;
 }
-
-// .select {
-//   margin-bottom: 30px;
-// }
-
-
-
-@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro);
 
 
 .select-box {

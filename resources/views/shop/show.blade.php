@@ -78,6 +78,7 @@
                                         店紹介 {{$shop->datail}}
                                     </div>
                                 </div>
+                                <div class="shop-images">
                                 @foreach ($images as $image)
                                     @if ($shop->id === $image->shop_id)
                                         <div class="card-bodys">
@@ -85,6 +86,7 @@
                                         </div>
                                     @endif
                                 @endforeach
+                                </div>
                                 @if($shop->users()->where('user_id', Auth::id())->exists())
                                 <div class="col-md-3">
                                     <form action="{{ route('unfavorites', $shop) }}" method="POST">
@@ -149,16 +151,17 @@
                                     {{$com->description}}
                                 </div>
                                 <input type="hidden" name="num[]" value="{{$com->id}}">
-                            
-                            @foreach ($imgs as $imag)
-                                @foreach ($imag as $ima)
-                                @if ($com->id === $ima->commodity_id && $ima->commodity_id !== null)
-                                <div class="card-bodys">
-                                    <img src="{{ asset('storage/'. $ima->image) }}" width="100px" height="100px">
-                                </div>
-                                @endif
+                            <div class="commodity-images">
+                                @foreach ($imgs as $imag)
+                                    @foreach ($imag as $ima)
+                                        @if ($com->id === $ima->commodity_id && $ima->commodity_id !== null)
+                                            <div class="card-bodys">
+                                                <img src="{{ asset('storage/'. $ima->image) }}" width="100px" height="100px">
+                                            </div>
+                                        @endif
+                                    @endforeach
                                 @endforeach
-                            @endforeach
+                            </div>
                             </div>
                             @endforeach
                             </div>

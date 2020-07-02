@@ -31,6 +31,7 @@
                                             {{ $post->post }}
                                         </p>
                                     </div>
+                                    <div class="post-images">
                                     @foreach ($images as $image)
                                         @if ($post->id === $image->post_id)
                                             <div class="card-bodys">
@@ -40,6 +41,7 @@
                                         @endif
                                     @endforeach
                                     </div>
+                                </div>
                         @endforeach
                         <div id="stop" class="scrollTop">
                             <a href="">Top</a>
