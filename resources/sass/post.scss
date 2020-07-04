@@ -173,6 +173,26 @@ $color2: red;
   flex-direction: column;
 }
 
+.shop-img-rem {
+  background-color: #FF6600;
+  color: black;
+  margin-top: 15px;
+  margin-right: 620px;
+  box-shadow:5px 5px 0px -2px;
+  border:1px solid #000;
+}
+
+.shop-img-add {
+  background-color: white;
+  color: black;
+  margin-top: 30px;
+  margin-bottom: 60px;
+  margin-right: 560px;
+  box-shadow:5px 5px 0px -2px;
+  border:1px solid #000;
+  padding: 10px;
+}
+
 .img-rem {
   background-color: #FF6600;
   color: black;
@@ -181,6 +201,8 @@ $color2: red;
   box-shadow:5px 5px 0px -2px;
   border:1px solid #000;
 }
+
+
 
 .img-add {
   background-color: white;

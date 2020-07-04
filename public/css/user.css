@@ -327,15 +327,14 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  width: 100vw;
 }
 
 .user-post-page {
-  width: calc(100vw - 300vw);
+  width: calc(100vw - 400px);
 }
 
 .user-datail-all {
-  width: calc(100vw - 600px);
+  width: calc(100vw - 300px);
 }
 
 .scrollTop {
@@ -398,5 +397,9 @@
   display: flex;
   justify-content: center;
   text-align: center;
+}
+
+.user-shop {
+  color: black;
 }
 

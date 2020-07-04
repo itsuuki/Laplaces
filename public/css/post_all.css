@@ -21,6 +21,18 @@
   padding: 8px;
 }
 
+.com-oyas {
+  display: flex;
+}
+
+.com-oya {
+  padding: 0.5em 1em;
+  margin: 1em 0;
+  background: white;
+  border-left: solid 6px #5bb7ae;
+  box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.336);
+}
+
 #graydisplay {
   display: none;
   position: fixed;

@@ -10,7 +10,7 @@ class Shop extends Model
         'sname',
         'region',
         'sprice',
-        'detail',
+        'datail',
         'store_in',
         'take_out',
         'delivery',

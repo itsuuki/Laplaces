@@ -15,6 +15,8 @@ class favoriteController extends Controller
 {
     public function store(Shop $shop)
     {
+        // echo var_dump($shop);
+        // $shops = Shop::where('id', $shop->id)->get();
         $shop->users()->attach(Auth::id());
         return back();
     }

@@ -95,12 +95,17 @@
 
 $(function () {
   var buildFileField = function buildFileField(index) {
-    var html = "\n    <div id=\"input_plural\" class=\"input_plural[".concat(index, "]\">\n      <label for=\"com-name\">\n        \u5546\u54C1\n      </label>\n      <input\n      id=\"name\"\n      name=\"name[").concat(index, "]\"\n      class=\"name {{ $errors->has('name[").concat(index, "]') ? 'is-invalid' : '' }}\"\n      value=\"\"\n      type=\"text\"\n      >\n\n      <label for=\"com-price\">\n        \u91D1\u984D\n      </label>\n      <input\n      id=\"price\"\n      name=\"price[").concat(index, "]\"\n      class=\"price {{ $errors->has('price[").concat(index, "]') ? 'is-invalid' : '' }}\"\n      value=\"\"\n      type=\"text\"\n      >\n\n      <label for=\"description\">\n          \u5546\u54C1\u7D39\u4ECB\n      </label>\n      <textarea\n          id=\"description\"\n          name=\"description[").concat(index, "]\"\n          class=\"com-description\"\n          rows=\"4\"\n      ></textarea>\n\n      <input type=\"hidden\" name=\"num[]\">\n      <input type=\"file\" name=\"image[]\">\n      <div class=\"plus_min\">\n      <input type=\"button\" value=\"\uFF0B\" class=\"add pluralBtn[]\">\n      <input type=\"button\" value=\"\uFF0D\" class=\"del pluralBtn[]\">\n      </div>\n    </div>");
+    var html = "\n    <div id=\"input_plural\" class=\"input_plural[".concat(index, "]\">\n    <div class=\"com-oya\">\n      <label for=\"com-name\">\n        \u5546\u54C1\n      </label>\n      <input\n      id=\"name\"\n      name=\"name[").concat(index, "]\"\n      class=\"name {{ $errors->has('name[").concat(index, "]') ? 'is-invalid' : '' }}\"\n      value=\"\"\n      type=\"text\"\n      >\n\n      <label for=\"com-price\">\n        \u91D1\u984D\n      </label>\n      <input\n      id=\"price\"\n      name=\"price[").concat(index, "]\"\n      class=\"price {{ $errors->has('price[").concat(index, "]') ? 'is-invalid' : '' }}\"\n      value=\"\"\n      type=\"text\"\n      >\n\n      <label for=\"description\">\n          \u5546\u54C1\u7D39\u4ECB\n      </label>\n      <textarea\n          id=\"description\"\n          name=\"description[").concat(index, "]\"\n          class=\"com-description\"\n          rows=\"4\"\n      ></textarea>\n\n      <input type=\"hidden\" name=\"num[]\">\n      <input type=\"file\" name=\"image[]\">\n      \n      <div class=\"plus_min\">\n      <input type=\"button\" value=\"\uFF0B\" class=\"add pluralBtn[]\">\n      <input type=\"button\" value=\"\uFF0D\" class=\"del pluralBtn[]\">\n      </div>\n    </div>\n    </div>");
     return html;
   };
 
   var buildFile = function buildFile(sindex) {
     var html = "\n    <div class=\"shop-img\">\n      <input type=\"file\" name=\"img[".concat(sindex, "]\" id=\"myfile\">\n      <div name=\"img-rem[").concat(sindex, "]\" id=\"img-rem\" class=\"img-rem\">\n        \u753B\u50CF\u524A\u9664\n      </div>\n      <input type=\"hidden\" name=\"nums[").concat(sindex, "]\">\n    </div>");
+    return html;
+  };
+
+  var buildFiles = function buildFiles(sindex) {
+    var html = "\n    <div class=\"shop-img\">\n      <input type=\"file\" name=\"img[".concat(sindex, "]\" id=\"myfile\">\n      <div name=\"img-rem[").concat(sindex, "]\" id=\"img-rem\" class=\"shop-img-rem\">\n        \u753B\u50CF\u524A\u9664\n      </div>\n      <input type=\"hidden\" name=\"nums[").concat(sindex, "]\">\n    </div>");
     return html;
   };
 
@@ -173,6 +178,34 @@ $(function () {
     }
   });
   $(document).on("click", ".img-rem", function () {
+    console.log("ok");
+
+    if (count_img > 1) {
+      count_img--;
+      $(this).parent().remove();
+      $('input[name^=nums]').filter(function (sindex) {
+        $(this).attr('name', 'nums[' + sindex + ']');
+      });
+      $('input[name^=img]').filter(function (sindex) {
+        $(this).attr('name', 'img[' + sindex + ']');
+      });
+    }
+  });
+  $(document).on("click", ".shop-img-add", function () {
+    if (count_img < 4) {
+      count_img++;
+      var img_data = document.getElementById('img-box').dataset.ind;
+      var imgc = img_data.innerHTML = count_img;
+      $('#img-box').append(buildFiles(imgc));
+      $('input[name^=nums]').filter(function (sindex) {
+        $(this).attr('name', 'nums[' + sindex + ']');
+      });
+      $('input[name^=img]').filter(function (sindex) {
+        $(this).attr('name', 'img[' + sindex + ']');
+      });
+    }
+  });
+  $(document).on("click", ".shop-img-rem", function () {
     console.log("ok");
 
     if (count_img > 1) {

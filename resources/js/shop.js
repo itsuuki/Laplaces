@@ -2,6 +2,7 @@ $(function(){
   const buildFileField = (index)=> {
     const html = `
     <div id="input_plural" class="input_plural[${index}]">
+    <div class="com-oya">
       <label for="com-name">
         商品
       </label>
@@ -36,10 +37,12 @@ $(function(){
 
       <input type="hidden" name="num[]">
       <input type="file" name="image[]">
+      
       <div class="plus_min">
       <input type="button" value="＋" class="add pluralBtn[]">
       <input type="button" value="－" class="del pluralBtn[]">
       </div>
+    </div>
     </div>`;
     return html;
   }
@@ -48,6 +51,17 @@ $(function(){
     <div class="shop-img">
       <input type="file" name="img[${sindex}]" id="myfile">
       <div name="img-rem[${sindex}]" id="img-rem" class="img-rem">
+        画像削除
+      </div>
+      <input type="hidden" name="nums[${sindex}]">
+    </div>`;
+    return html;
+  }
+  const buildFiles = (sindex)=> {
+    const html = `
+    <div class="shop-img">
+      <input type="file" name="img[${sindex}]" id="myfile">
+      <div name="img-rem[${sindex}]" id="img-rem" class="shop-img-rem">
         画像削除
       </div>
       <input type="hidden" name="nums[${sindex}]">
@@ -123,6 +137,34 @@ $(function(){
     }
   });
   $(document).on("click", ".img-rem", function() {
+    console.log("ok");
+    if (count_img > 1) {
+      count_img--;
+      $(this).parent().remove();
+      $('input[name^=nums]').filter(function(sindex){ 
+        $(this).attr('name','nums['+sindex+']') 
+      });
+      $('input[name^=img]').filter(function(sindex){ 
+        $(this).attr('name','img['+sindex+']') 
+      });
+    }
+  });
+  $(document).on("click", ".shop-img-add", function() {
+    if (count_img < 4) {
+    count_img++
+    var img_data = document.getElementById('img-box').dataset.ind;
+    var imgc = img_data.innerHTML = count_img;
+    $('#img-box').append(buildFiles(imgc));
+    
+    $('input[name^=nums]').filter(function(sindex){ 
+      $(this).attr('name','nums['+sindex+']') 
+    });
+    $('input[name^=img]').filter(function(sindex){ 
+      $(this).attr('name','img['+sindex+']') 
+    });
+    }
+  });
+  $(document).on("click", ".shop-img-rem", function() {
     console.log("ok");
     if (count_img > 1) {
       count_img--;
