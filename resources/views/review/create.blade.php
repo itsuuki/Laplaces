@@ -4,45 +4,43 @@
 <script src="{{ asset('/js/reviews.js') }}" defer></script>
 @section('content')
 <form method="POST" action="{{route('Review.store')}}" enctype="multipart/form-data">
-    {{ csrf_field() }}
-    <div class="post-top">
+  {{ csrf_field() }}
+  <div class="post-top">
+    <div class="select-box">
+      <label for="select-box1" class="label select-box1"><span class="label-desc">Choose review</span></label>
+      <select name="evaluation" class="select" id="select-box1">
+        <option value="1">1(よくない)</option>
+        <option value="2">2(あまりよくない)</option>
+        <option value="3">3(普通)</option>
+        <option value="4">4(よい)</option>
+        <option value="5">5(最高)</option>
+      </select>
+    </div>
 
+    <label for="detail">
+        レビュー文
+    </label>
+    <textarea
+        id="detail"
+        name="detail"
+        class="review-detail"
+        rows="4"
+    >{{ old('detail') }}</textarea>
 
-      <div class="select-box">
-        <label for="select-box1" class="label select-box1"><span class="label-desc">Choose review</span></label>
-        <select name="evaluation" class="select" id="select-box1">
-          <option value="1">1(よくない)</option>
-          <option value="2">2(あまりよくない)</option>
-          <option value="3">3(普通)</option>
-          <option value="4">4(よい)</option>
-          <option value="5">5(最高)</option>
-        </select>
-      </div>
+    <!-- <label for="detailaaa">
+    {{$shop_id->id}}
+    </label> -->
+        
+    <input type="hidden" name="id" value="{{$shop_id->id}}">
 
-<label for="detail">
-    レビュー文
-</label>
-<textarea
-    id="detail"
-    name="detail"
-    class="review-detail"
-    rows="4"
->{{ old('detail') }}</textarea>
-
-<!-- <label for="detailaaa">
-{{$shop_id->id}}
-</label> -->
-    
-<input type="hidden" name="id" value="{{$shop_id->id}}">
-
-<div class="wrapper">
-<a class="review-can" href="/">
-    キャンセル
-</a>
-<button type="submit" class="review-cre">
-    登録する
-</button>
-</div>
+    <div class="wrapper">
+      <a class="review-can" href="/">
+          キャンセル
+      </a>
+      <button type="submit" class="review-cre">
+          登録する
+      </button>
+    </div>
+  </div>
 </form>
-</div>
 @endsection

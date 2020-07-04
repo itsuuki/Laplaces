@@ -93,6 +93,68 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
+$(function () {
+  $('.getTarget-fav').on('click', function () {
+    var getConfirm = confirm('いいねしてよろしいでしょうか？');
+
+    if (getConfirm == true) {
+      var clickEle = $(this);
+      var favID = clickEle.attr('data-fav-id'); // console.log(clickEle);
+      // console.log(favID);
+
+      $.ajax({
+        // headers: {
+        //   'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        // },
+        url: '/Favorite/' + favID,
+        type: 'POST',
+        data: {
+          'shop_id': favID,
+          '_method': 'POST'
+        }
+      }).done(function () {// clickEle.parent().remove();
+      }).fail(function () {
+        alert('エラー');
+      });
+    } else {
+      (function (e) {
+        e.preventDefault();
+      });
+    }
+
+    ;
+  });
+});
+$(function () {
+  $('.deleteTarget-fav').on('click', function () {
+    var deleteConfirm = confirm('いいね削除してよろしいでしょうか？');
+
+    if (deleteConfirm == true) {
+      var clickEle = $(this);
+      var favID = clickEle.attr('data-fav-id');
+      $.ajax({
+        headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        url: '/UnFavorite/' + favID,
+        type: 'POST',
+        data: {
+          'id': favID,
+          '_method': 'DELETE'
+        }
+      }).done(function () {// clickEle.parent().remove();
+      }).fail(function () {
+        alert('エラー');
+      });
+    } else {
+      (function (e) {
+        e.preventDefault();
+      });
+    }
+
+    ;
+  });
+});
 $(document).ready(function () {
   var scrollTop = $(".scrollTop");
   $(window).scroll(function () {

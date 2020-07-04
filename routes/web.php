@@ -29,6 +29,8 @@ Route::post('/Shop/update', 'ShopController@update');
 Route::get('/Shop', 'ShopController@destroy');
 Route::get('/Image', 'ImageController@destroy');
 Route::get('/Post', 'PostController@destroy');
+Route::get('/Favorite', 'FavoriteController@store');
+Route::get('/UnFavorite', 'FavoriteController@destroy');
 Route::get('/Home/search', 'HomeController@search')->name('home.search');
 Route::get('/Shop/{shop_id}/review/create', function (App\Shop $shop_id) {
   return view('review.create', ['shop_id'=>$shop_id]);

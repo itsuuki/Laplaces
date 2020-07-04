@@ -1,4 +1,5 @@
 @extends('layouts.app')
+  <link rel="stylesheet" href="{{ mix('css/post_all.css') }}">
   <script type="text/javascript" src="//code.jquery.com/jquery-3.5.0.min.js"></script>
   <script src="{{ asset('/js/shop.js') }}" defer></script>
 @section('content')
@@ -16,8 +17,10 @@
     <p>
       新規商品数<span id="press-button">1</span>個
     </p>
+    <div class="com-oyas">
     <div id="input_pluralBox" data-index="1">
       <div id="input_plural" class="input_plural[]">
+        <div class="com-oya">
           <label for="com-name">
             商品
           </label>
@@ -49,11 +52,13 @@
               class="com-description"
               rows="4"
           >{{ old('description[]') }}</textarea>
-        <input type="button" value="＋" class="add pluralBtn[]">
-        <input type="button" value="－" class="del pluralBtn[]">
-        <input type="hidden" name="num[]">
-        <input type="file" name="image[]" class="com-image-add {{ $errors->has('image') ? 'is-invalid' : '' }}" value="{{ old('image') }}">
+          <input type="file" name="image[]" class="com-image-add {{ $errors->has('image') ? 'is-invalid' : '' }}" value="{{ old('image') }}">
+          <input type="button" value="＋" class="add pluralBtn[]">
+          <input type="button" value="－" class="del pluralBtn[]">
+          <input type="hidden" name="num[]">
       </div>
+    </div>
+    </div>
     </div>
     <a class="btn btn-secondary" href="{{ action('ShopController@show', $id) }}">
         キャンセル

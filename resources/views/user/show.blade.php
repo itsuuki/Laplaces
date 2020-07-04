@@ -171,7 +171,7 @@
           </div>
         <!-- </div> -->
       </div>
-    </div>
+    <!-- </div> -->
       <!-- </div> -->
 
       
@@ -180,11 +180,22 @@
 
     <div class="tab_item" id="item3">
       @if ($fav_shops !== null)
-      @foreach ($fav_shops as $fav_sho)
-      @foreach ($fav_sho as $fav)
-        {{$fav->sname}}
-      @endforeach
-      @endforeach
+        @foreach ($fav_shops as $fav_sho)
+          @foreach ($fav_sho as $fav)
+            <div class="card mb-4">
+              <div class="card-header">
+              <a class="user-shop" href="/Shop/{{ $shop->id }}">
+                {{$fav->sname}}
+              </a>
+              </div>
+              <div class="card-body">
+                <p class="card-text">
+                  {{ $fav->datail }}
+                </p>
+              </div>
+            </div>
+          @endforeach
+        @endforeach
       @endif
     </div>
 

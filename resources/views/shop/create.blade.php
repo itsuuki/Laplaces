@@ -109,13 +109,13 @@
         <!-- <div class="img-show">
           
         </div> -->
-        <div name="img-rem[]" id="img-rem" class="img-rem">
+        <div name="img-rem[]" id="img-rem" class="shop-img-rem">
           画像削除
         </div>
         <input type="hidden" name="nums[]">
       </div>
     </div>
-    <div class="img-add">
+    <div class="shop-img-add">
       写真を追加する
     </div>
     </p>
@@ -179,17 +179,6 @@
         </button>
     </div>
 </form>
-<!-- <div class="backg">
-  背景の色を変える
-</div> -->
-<!-- <p>
-    背景色を…
-    <input type="button" value="緑色に変更する" onclick="changeBoxColor('#008000');">
-    <input type="button" value="青色に変更する" onclick="changeBoxColor('#0000ff');">
-    <input type="button" value="黄色に変更する" onclick="changeBoxColor('#ffff00');">
-    <input type="button" value="赤色に変更する" onclick="changeBoxColor('#ff0000');">
-    <input type="button" value="淡い緑色に戻す" onclick="changeBoxColor('#ccffcc');">
-</p> -->
 </div>
 </div>
 </div>
