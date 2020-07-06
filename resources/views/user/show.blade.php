@@ -158,7 +158,15 @@
                                 </div>
                               @endif
                             @endforeach</div></div>
-                          <div class="reser_header">chat</div>
+                          <div class="reser_header">
+                          @foreach ($chats as $chat)
+                            @if ($chat->sname === $reservation->sname)
+                              <a href="/chat/{{ Auth::user()->id }}/{{ $chat->id }}">
+                                chat
+                              </a>
+                            @endif
+                            @endforeach
+                          </div>
                         </div>
                       </div>
                     @endif

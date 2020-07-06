@@ -6,13 +6,14 @@
   {{ csrf_field() }}
   <div class="post-top">
     <div class="select-box">
-        <label for="select-box1" class="label select-box1"><span class="label-desc">Choose shop</span></label>
-        <select name="shop_n" class="select" id="select-box1">
+      <label for="select-box1" class="label select-box1"><span class="label-desc">Choose shop</span></label>
+      <select name="shop_n" class="select" id="select-box1">
         @foreach ($shops as $shop)
+        
           <option value="{{ $shop->id }}">{{ $shop->sname }}</option>
-        @endforeach
-      </select>
-    </div>
+          @endforeach
+        </select>
+      </div>
     <label for="post" class="post-label">
         投稿内容
     </label>

@@ -35,8 +35,9 @@
                                     @foreach ($images as $image)
                                         @if ($post->id === $image->post_id)
                                             <div class="card-bodys">
-                                                <img src="{{ asset('storage/'. $image->image) }}" width="100px" height="100px">
+                                                <img src="{{asset('storage/app/'. $image->image)}}" width="100px" height="100px">
                                                 <!-- <img src="{{ asset('storage/'. $image->image) }}"> -->
+                                                <!-- http://192.168.99.100/work/storage/app/{{ $image->image }} -->
                                             </div>
                                         @endif
                                     @endforeach

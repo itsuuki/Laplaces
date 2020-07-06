@@ -71,6 +71,15 @@ class UserController extends Controller
         ->latest('reservations.created_at')
         ->get();
 
+        $chats = DB::table('reservations')
+        ->join('users', 'reservations.user_id', '=', 'users.id')
+        ->join('shops', 'reservations.shop_id', '=', 'shops.id')
+        ->select('users.id', 'shops.sname', 'shops.id')
+        ->groupBy('users.id', 'shops.sname', 'shops.id')
+        ->where('users.id', $id)
+        ->latest('shops.created_at')
+        ->get();
+
         $favorites = Favorite::where('user_id', $id)->get();
         $favorite_id = $favorites->pluck('shop_id');
         $fav_shops = array();
@@ -82,7 +91,7 @@ class UserController extends Controller
                 array_push($fav_shops, $fav_shop);
             }
         }
-        return view("user.show", ['user' => $user, 'shops'=> $shops, 'id' => $id, 'posts' => $posts, 'images'=> $images, 'reservations' => $reservations, 'commodities' => $commodities, 'reser_shops' => $reser_shops, 'fav_shops' => $fav_shops]);
+        return view("user.show", ['user' => $user, 'shops'=> $shops, 'id' => $id, 'posts' => $posts, 'images'=> $images, 'reservations' => $reservations, 'commodities' => $commodities, 'reser_shops' => $reser_shops, 'fav_shops' => $fav_shops, 'chats' => $chats]);
     }
     public function edit($id)
     {
