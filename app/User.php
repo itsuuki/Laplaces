@@ -62,6 +62,11 @@ class User extends Authenticatable
         return $this->belongsTo('App\Reservation');
     }
 
+    public function chat()
+    {
+        return $this->belongsTo('App\chat');
+    }
+
     // public function commodities()
     // {
     //     return $this->belongsToMany('App\commodity');

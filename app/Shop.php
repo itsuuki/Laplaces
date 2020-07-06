@@ -51,4 +51,9 @@ class Shop extends Model
     {
         return $this->belongsTo('App\Reservation');
     }
+
+    public function chat()
+    {
+        return $this->belongsTo('App\Chat');
+    }
 }

@@ -42,7 +42,11 @@
                             </div>
                           @endif
                         @endforeach</div></div>
-                      <div class="reser_header">chat</div>
+                      <div class="reser_header">
+                            <a href="/chat/{{ $user->name }}/{{ $user->id }}">
+                              chat
+                            </a>
+                      </div>
                     </div>
                   </div>
                 @endif

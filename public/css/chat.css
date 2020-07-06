@@ -1,0 +1,8 @@
+.room {
+  height: 400px;
+  background-color: white;
+  border: solid 1px black;
+  margin-bottom: 40px;
+  overflow: scroll;
+}
+
