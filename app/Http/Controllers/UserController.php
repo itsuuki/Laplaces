@@ -15,7 +15,7 @@ use App\Image;
 
 use App\Post;
 
-use App\Order;
+use App\Chat;
 
 use App\Reservation;
 
@@ -65,7 +65,7 @@ class UserController extends Controller
         $reservations = DB::table('reservations')
         ->join('users', 'reservations.user_id', '=', 'users.id')
         ->join('shops', 'reservations.shop_id', '=', 'shops.id')
-        ->select('users.id', 'shops.sname', 'reservations.form', 'reservations.day', 'reservations.month', 'reservations.hour', 'reservations.minute', 'reservations.people', 'reservations.total_price', 'reservations.created_at')
+        ->select('users.id', 'shops.sname', 'shops.sname', 'reservations.form', 'reservations.day', 'reservations.month', 'reservations.hour', 'reservations.minute', 'reservations.people', 'reservations.total_price', 'reservations.created_at')
         ->groupBy('users.id', 'shops.sname', 'reservations.form', 'reservations.day', 'reservations.month', 'reservations.hour', 'reservations.minute', 'reservations.people', 'reservations.total_price', 'reservations.created_at')
         ->where('users.id', $id)
         ->latest('reservations.created_at')
@@ -91,7 +91,9 @@ class UserController extends Controller
                 array_push($fav_shops, $fav_shop);
             }
         }
-        return view("user.show", ['user' => $user, 'shops'=> $shops, 'id' => $id, 'posts' => $posts, 'images'=> $images, 'reservations' => $reservations, 'commodities' => $commodities, 'reser_shops' => $reser_shops, 'fav_shops' => $fav_shops, 'chats' => $chats]);
+
+        $chat_mes = Chat::where('user_id', $id)->orderBy('created_at', 'desc')->get();
+        return view("user.show", ['user' => $user, 'shops'=> $shops, 'id' => $id, 'posts' => $posts, 'images'=> $images, 'reservations' => $reservations, 'commodities' => $commodities, 'reser_shops' => $reser_shops, 'fav_shops' => $fav_shops, 'chats' => $chats, 'chat_mes' => $chat_mes]);
     }
     public function edit($id)
     {

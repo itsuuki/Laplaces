@@ -92,6 +92,43 @@ $color2: red;
   }
 }
 
+.back-btn {
+  padding: 0.75em 2em;
+  text-align: center;
+  text-decoration: none;
+  color: $color2;
+  border: 2px solid $color2;
+  font-size: 15px;
+  display: inline-block;
+  border-radius: 0.3em;
+  transition: all 0.2s ease-in-out;
+  position: relative;
+  overflow: hidden;
+  background-color: white;
+  &:before {
+    content: "";
+    background-color: rgba(255,255,255,0.5);
+    height: 100%;
+    width: 3em;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: -4.5em;
+    transform: skewX(-45deg) translateX(0);
+    transition: none;
+    
+  }
+  &:hover {
+    background-color: $color2;
+    color: #fff;
+    border-bottom: 4px solid darken($color2, 10%);
+    &:before {
+      transform: skewX(-45deg) translateX(13.5em);
+     transition: all 0.5s ease-in-out;
+    }
+  }
+}
+
 .select-box {
   cursor: pointer;
   position : relative;

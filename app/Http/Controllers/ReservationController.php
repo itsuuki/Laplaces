@@ -16,7 +16,7 @@ use App\User;
 
 use App\Reservation;
 
-use App\Order;
+use App\Chat;
 
 use Carbon\Carbon;
 
@@ -124,6 +124,15 @@ class ReservationController extends Controller
         ->where('shops.id', $id)
         ->latest('reservations.created_at')
         ->get();
-        return view('reservation/index', ['reservations' => $reservations, 'commodities' => $commodities, 'users' => $users]);
+        $chats = DB::table('reservations')
+        ->join('users', 'reservations.user_id', '=', 'users.id')
+        ->join('shops', 'reservations.shop_id', '=', 'shops.id')
+        ->select('shops.id', 'users.name', 'shops.sname')
+        ->groupBy('shops.id', 'users.name', 'shops.sname')
+        ->where('shops.id', $id)
+        ->latest('shops.created_at')
+        ->get();
+        $chat_mes = Chat::where('shop_id', $id)->orderBy('created_at', 'desc')->get();
+        return view('reservation/index', ['reservations' => $reservations, 'commodities' => $commodities, 'users' => $users, 'chats' => $chats, 'chat_mes' => $chat_mes]);
     }
 }
