@@ -28,6 +28,7 @@ mix.js('resources/js/reviews.js', 'public/js')
 mix.sass('resources/sass/datail.scss', 'public/css');
 mix.js('resources/js/chat.js', 'public/js')
     .sass('resources/sass/chat.scss', 'public/css');
+mix.js('resources/js/comment.js', 'public/js')
 if (mix.inProduction()) {
     mix.version();
     }

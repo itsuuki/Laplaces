@@ -42,13 +42,29 @@
                             </div>
                           @endif
                         @endforeach</div></div>
-                      <div class="reser_header">
-                            <a href="/chat/{{ $user->name }}/{{ $user->id }}">
-                              chat
-                            </a>
+                        <div class="reser_header">お問い合わせ<div class="i_box"><i class="one_i"></i></div></div>
+                          <div class="reser_inner">
+                        <div class="reser_one">
+                          @foreach ($chat_mes as $ch)
+                        <div class="reser_header">
+                          <a class="user-shop" href="/Chat/{{ $ch->id }}">
+                                {{ $ch->title }}
+                          </a>
+                        </div>
+                        @endforeach
+                          <div class="reser_header">
+                          @foreach ($chats as $chat)
+                            @if ($chat->name === $reservation->name)
+                              <a href="/chat/{{ Auth::user()->id }}/{{ Auth::user()->name }}/{{ $chat->id }}/{{ $chat->sname }}">
+                                お問い合わせを送る
+                              </a>
+                            @endif
+                            @endforeach
+                            </div>
+                            </div>
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                  </div>
                 @endif
               @endforeach
               </div>

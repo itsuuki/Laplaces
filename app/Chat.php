@@ -10,8 +10,11 @@ class Chat extends Model
         'send',
         'recieve',
         'message',
+        'title'
     ];
-    // protected $guarded = ['id'];
+    protected $guarded = [
+        'create_at', 'update_at'
+    ];
 
     public function users()
     {
