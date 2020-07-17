@@ -53,13 +53,15 @@ class PostController extends Controller
 
         foreach ($request->nums as $val) {
             if ($request->img !== null) {
-            $img = new Image;
+                $img = new Image;
 
-            $img->image = $request->img[$l]->store('public/images');
+                $img->image = $request->img[$l]->store('images', 'public');
+                // $img->image = str_replace('public/', 'storage/', $images);
+                // $read_temp_path = str_replace('public/', 'storage/', $temp_path);
 
-            $img->post_id = $post->id;
+                $img->post_id = $post->id;
 
-            $img->save();
+                $img->save();
             }
             $l++;
         }

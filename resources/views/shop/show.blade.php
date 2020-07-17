@@ -85,7 +85,7 @@
                                         </div>
                                     @endif
                                 @endforeach
-                                @if($shop->users()->where('user_id', Auth::id())->exists())
+                                @if($shop->users()->where('favorites.user_id', Auth::id())->exists())
                                 <div class="col-md-3">
                                     <form action="{{ route('unfavorites', $shop) }}" method="POST">
                                         {{ csrf_field() }}
@@ -117,6 +117,11 @@
                                         <a class="review-ne" href="{{ $shop->id }}/Reservation">
                                             注文一覧,店
                                         </a>
+                                        <form method="post" action="/Shop/delete/{{$shop->id}}">
+                                        {{ csrf_field()}}
+                                            <input type="hidden" name="shop_del" value="{{$shop->id}}">
+                                            <button type="submit" class="shop-delete-btn">このお店を削除</button>
+                                        </form>
                                     @endif
                                 </div>
                             </div>

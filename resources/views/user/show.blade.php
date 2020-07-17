@@ -191,14 +191,9 @@
               @endforeach
             </div>
           </div>
-        <!-- </div> -->
+        </div>
+        </div>
       </div>
-    <!-- </div> -->
-      <!-- </div> -->
-
-      
-      <!-- </div> -->
-
 
     <div class="tab_item" id="item3">
       @if ($fav_shops !== null)

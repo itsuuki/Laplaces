@@ -219,8 +219,8 @@ $(function(){
   });
   
   
-  $(".select").on("change" , function() {
-    
+  $(".select").on("click" , function() {
+    console.log("ok");
     var selection = $(this).find("option:selected").text(),
         labelFor = $(this).attr("id"),
         label = $("[for='" + labelFor + "']");

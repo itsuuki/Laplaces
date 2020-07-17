@@ -256,7 +256,8 @@ $(function () {
       container.removeClass("open");
     }
   });
-  $(".select").on("change", function () {
+  $(".select").on("click", function () {
+    console.log("ok");
     var selection = $(this).find("option:selected").text(),
         labelFor = $(this).attr("id"),
         label = $("[for='" + labelFor + "']");
@@ -273,7 +274,7 @@ $(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /work/resources/js/shop.js */"./resources/js/shop.js");
+module.exports = __webpack_require__(/*! /var/www/resources/js/shop.js */"./resources/js/shop.js");
 
 
 /***/ })

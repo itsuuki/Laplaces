@@ -73,13 +73,13 @@ class ShopController extends Controller
 
         foreach ($request->nums as $val) {
             if ($request->img !== null) {
-            $img = new Image;
+                $img = new Image;
 
-            $img->image = $request->img[$l]->store('images');
+                $img->image = $request->img[$l]->store('images', 'public');
 
-            $img->shop_id = $value->id;
+                $img->shop_id = $value->id;
 
-            $img->save();
+                $img->save();
             }
             $l++;
         }
@@ -103,7 +103,7 @@ class ShopController extends Controller
             $com->shop_id = $value->id;
             $com->save();
             // if ($request->img !== null) {
-            $image->image = $request->image[$i]->store('images');
+            $image->image = $request->image[$i]->store('images', 'public');
             $image->commodity_id = $com->id;
             $image->save();
             // }
@@ -158,7 +158,7 @@ class ShopController extends Controller
         $value->fill($request->all())->save();
         if ($request->img !== null) {
             $img = Image::find($request->id);
-            $img->image = $request->img->store('images');
+            $img->image = $request->img->store('images', 'public');
             $img->shop_id = $value->id;
             $img->save();
         }
@@ -173,7 +173,7 @@ class ShopController extends Controller
             $com->shop_id = $request->id;
             $com->save();
             if ($request->image !== null) {
-                $image->image = $request->image[$i]->store('images');
+                $image->image = $request->image[$i]->store('images', 'public');
                 $image->shop_id = $value->id;
                 $image->commodity_id = $com->id;
                 $image->save();
@@ -200,9 +200,10 @@ class ShopController extends Controller
         return view('shop.show', ['shop' => $shop, 'review' => $review, 'reviews' => $reviews, 'users' => $users, 'images'=> $images, 'commodity' => $commodity,'commodities' => $commodities, 'image' => $image, 'imgs' => $imgs]);
     }
 
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        $com = Commodity::findOrFail($id);
-        $com->delete();
+        $shop = Shop::findOrFail($request->shop_del);
+        $shop->delete();
+        return redirect('/home');
     }
 }

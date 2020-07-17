@@ -104,14 +104,14 @@ $(function () {
         headers: {
           'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
-        url: '/Shop/' + comID,
+        url: '/Commodity/' + comID,
         type: 'POST',
         data: {
           'id': comID,
           '_method': 'DELETE'
         }
       }).done(function () {
-        console.log(clickEle);
+        // console.log(clickEle)
         clickEle.parent().remove();
       }).fail(function () {
         alert('エラー');
@@ -219,6 +219,36 @@ $(function () {
     ;
   });
 });
+$(function () {
+  $('.deleteTarget-shop').on('click', function () {
+    var deleteConfirm = confirm('削除してよろしいでしょうか？');
+
+    if (deleteConfirm == true) {
+      var clickEle = $(this);
+      var shopID = clickEle.attr('data-shop-id');
+      $.ajax({
+        headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        url: '/Shop/' + shopID,
+        type: 'POST',
+        data: {
+          'id': imaID,
+          '_method': 'DELETE'
+        }
+      }).done(function () {// clickEle.parent().remove();
+      }).fail(function () {
+        alert('エラー');
+      });
+    } else {
+      (function (e) {
+        e.preventDefault();
+      });
+    }
+
+    ;
+  });
+});
 
 /***/ }),
 
@@ -229,7 +259,7 @@ $(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /work/resources/js/delete-com.js */"./resources/js/delete-com.js");
+module.exports = __webpack_require__(/*! /var/www/resources/js/delete-com.js */"./resources/js/delete-com.js");
 
 
 /***/ })
