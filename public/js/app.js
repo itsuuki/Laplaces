@@ -55773,9 +55773,9 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 window.Pusher = __webpack_require__(/*! pusher-js */ "./node_modules/pusher-js/dist/web/pusher.js");
 window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
   broadcaster: 'pusher',
-  key: "c2567fd742fb5c387072",
+  key: "",
   client: process.env.MIX_PUSHER_APP_ID,
-  cluster: "ap3",
+  cluster: "",
   encrypted: false,
   forceTLS: true
 });
@@ -55947,15 +55947,15 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /work/resources/js/app.js */"./resources/js/app.js");
-__webpack_require__(/*! /work/resources/sass/app.scss */"./resources/sass/app.scss");
-__webpack_require__(/*! /work/resources/sass/shop.scss */"./resources/sass/shop.scss");
-__webpack_require__(/*! /work/resources/sass/post.scss */"./resources/sass/post.scss");
-__webpack_require__(/*! /work/resources/sass/user.scss */"./resources/sass/user.scss");
-__webpack_require__(/*! /work/resources/sass/post_all.scss */"./resources/sass/post_all.scss");
-__webpack_require__(/*! /work/resources/sass/reviews.scss */"./resources/sass/reviews.scss");
-__webpack_require__(/*! /work/resources/sass/datail.scss */"./resources/sass/datail.scss");
-module.exports = __webpack_require__(/*! /work/resources/sass/chat.scss */"./resources/sass/chat.scss");
+__webpack_require__(/*! /var/www/resources/js/app.js */"./resources/js/app.js");
+__webpack_require__(/*! /var/www/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /var/www/resources/sass/shop.scss */"./resources/sass/shop.scss");
+__webpack_require__(/*! /var/www/resources/sass/post.scss */"./resources/sass/post.scss");
+__webpack_require__(/*! /var/www/resources/sass/user.scss */"./resources/sass/user.scss");
+__webpack_require__(/*! /var/www/resources/sass/post_all.scss */"./resources/sass/post_all.scss");
+__webpack_require__(/*! /var/www/resources/sass/reviews.scss */"./resources/sass/reviews.scss");
+__webpack_require__(/*! /var/www/resources/sass/datail.scss */"./resources/sass/datail.scss");
+module.exports = __webpack_require__(/*! /var/www/resources/sass/chat.scss */"./resources/sass/chat.scss");
 
 
 /***/ })

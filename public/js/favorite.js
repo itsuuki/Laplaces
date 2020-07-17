@@ -198,7 +198,7 @@ $(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /work/resources/js/favorite.js */"./resources/js/favorite.js");
+module.exports = __webpack_require__(/*! /var/www/resources/js/favorite.js */"./resources/js/favorite.js");
 
 
 /***/ })

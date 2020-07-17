@@ -43,7 +43,7 @@ class CommodityController extends Controller
             $com->user_id = $request->user()->id;
             $com->save();
             if ($request->image[$i] !== null) {
-                $image->image = $request->image[$i]->store('images');
+                $image->image = $request->image[$i]->store('images', 'public');
                 $image->shop_id = $value->id;
                 $image->commodity_id = $com->id;
                 $image->save();
@@ -60,6 +60,11 @@ class CommodityController extends Controller
         return view('shop/index');
     }
 
+    public function destroy($id)
+    {
+        $com = Commodity::findOrFail($id);
+        $com->delete();
+    }
     // public function destroy($post_id)
     // {
     // // echo var_dump($post_id);

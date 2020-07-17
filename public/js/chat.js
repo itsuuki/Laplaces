@@ -162,7 +162,7 @@ $(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /work/resources/js/chat.js */"./resources/js/chat.js");
+module.exports = __webpack_require__(/*! /var/www/resources/js/chat.js */"./resources/js/chat.js");
 
 
 /***/ })

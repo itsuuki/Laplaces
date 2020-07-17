@@ -110,7 +110,7 @@ $(document).ready(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /work/resources/js/post.js */"./resources/js/post.js");
+module.exports = __webpack_require__(/*! /var/www/resources/js/post.js */"./resources/js/post.js");
 
 
 /***/ })

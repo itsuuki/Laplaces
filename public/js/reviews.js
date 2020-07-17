@@ -104,7 +104,7 @@ $(function () {
       container.removeClass("open");
     }
   });
-  $(".select").on("change", function () {
+  $(".select").on("click", function () {
     var selection = $(this).find("option:selected").text(),
         labelFor = $(this).attr("id"),
         label = $("[for='" + labelFor + "']");
@@ -121,7 +121,7 @@ $(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /work/resources/js/reviews.js */"./resources/js/reviews.js");
+module.exports = __webpack_require__(/*! /var/www/resources/js/reviews.js */"./resources/js/reviews.js");
 
 
 /***/ })

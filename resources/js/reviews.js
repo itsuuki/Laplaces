@@ -14,7 +14,7 @@ $(function(){
   });
   
   
-  $(".select").on("change" , function() {
+  $(".select").on("click" , function() {
     
     var selection = $(this).find("option:selected").text(),
         labelFor = $(this).attr("id"),
