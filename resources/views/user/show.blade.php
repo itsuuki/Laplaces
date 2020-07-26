@@ -11,14 +11,13 @@
         <div class="accordion_header">{{ Auth::user()->name }}<div class="i_box"><i class="one_i"></i></div></div>
         <div class="accordion_inner">
           <div class="accordion_one">
-            <div class="accordion_header">aaa<div class="i_box"><i class="one_i"></i></div></div>
+            <div class="accordion_header">お気に入り<div class="i_box"><i class="one_i"></i></div></div>
             <div class="accordion_inner">
               <div class="accordion_one">
                 <div class="accordion_header">
                   <a class="tab_btn" href="#item3">
                   お気に入り
                   </a></div>
-                <div class="accordion_header">A_b</div>
               </div>
             </div>
           </div>
@@ -65,7 +64,6 @@
                   <a class="shop-new" href="Shop/create">
                     店を登録する
                   </a></div>
-                <div class="accordion_header">B_b</div>
               </div>
             </div>
           </div>
@@ -82,11 +80,14 @@
   <div class="user-datail-all">
 
     <div class="tab_item is-active-item" id="item1">
+    <div class="accbox">
           @foreach ($shops as $shop)
+
             <div class="card mb-4">
-                <div class="card-header">
-                  {{$shop->sname}}
-                </div>
+            <label for="{{$shop->sname}}">{{$shop->sname}}</label>
+            <input type="checkbox" id="{{$shop->sname}}" class="cssacc" />
+                <div class="accshow">
+                  <p>
                 @foreach ($posts as $post)
                 @if ($shop->id === $post->shop_id)
                     <div class = "post-oya">
@@ -109,10 +110,13 @@
                             </a>
                           <div class="line"></div>
                         </div>
-                          @endif
-                      @endforeach
+                        @endif
+                        @endforeach
+                      </p>
+                  </div>
                   </div>
                   @endforeach
+              </div>
           </div>
 
 
