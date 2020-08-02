@@ -33,10 +33,11 @@ class PostController extends Controller
     {
         $request->validate([
             'post' => 'required|max:200',
-            // 'image' => 'required',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:1024',
         ],
         [
             'post.required' => '投稿内容は必須です。',
+            'image.required' => '写真は必須です。',
         ]);
 
         $post = new Post;
