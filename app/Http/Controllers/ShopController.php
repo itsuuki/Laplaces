@@ -37,6 +37,9 @@ class ShopController extends Controller
             'region' => 'required|max:100',
             'datail' => 'required|max:200',
             'photo' => 'required | numeric | digits_between:8,11',
+            `name` => 'required|max:50',
+            `price` => 'required|numeric',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:1024',
         ],
         [
             'sname.required' => '店の名前は必須です。',
@@ -44,6 +47,9 @@ class ShopController extends Controller
             'region.required' => '住所は必須です。',
             'datail.required' => '紹介文は必須です。',
             'photo.required' => '電話番号は必須です。',
+            `name.required` => '商品名は必須です。',
+            `price.required` => '金額は必須です。',
+            'image.required' => '写真は必須です。',
         ]);
         $value = new Shop;
 
@@ -153,6 +159,26 @@ class ShopController extends Controller
 
     public function update(Request $request)
     {
+        $request->validate([
+            'sname' => 'required|max:50',
+            'sprice' => 'required|numeric',
+            'region' => 'required|max:100',
+            'datail' => 'required|max:200',
+            'photo' => 'required | numeric | digits_between:8,11',
+            `name` => 'required|max:50',
+            `price` => 'required|numeric',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:1024',
+        ],
+        [
+            'sname.required' => '店の名前は必須です。',
+            'sprice.required' => '平均金額は必須です。',
+            'region.required' => '住所は必須です。',
+            'datail.required' => '紹介文は必須です。',
+            'photo.required' => '電話番号は必須です。',
+            `name.required` => '商品名は必須です。',
+            `price.required` => '金額は必須です。',
+            'image.required' => '写真は必須です。',
+        ]);
         $i = 0;
         $value = Shop::findOrFail($request->id);
         $value->fill($request->all())->save();
