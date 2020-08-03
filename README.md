@@ -1,6 +1,14 @@
 # Laplaces
 
-#　実装機能
+##　開発環境/本番環境
+・php 7.4.3
+・laravel 3.0
+・docker
+・laradock
+・mysql
+・AWS
+
+##　実装機能
 ・Userの登録機能
 ・ログイン/ログアウト機能
 ・お店の登録/編集/削除
@@ -13,6 +21,7 @@
 ・お気に入り機能
 ・検索機能
 ・モーダル機能
+
  
 ## usersテーブル
 |Column|Type|Options|
