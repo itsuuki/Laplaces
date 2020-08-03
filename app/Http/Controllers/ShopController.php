@@ -91,28 +91,17 @@ class ShopController extends Controller
         }
 
         foreach ($request->num as $val) {
-            // $request->validate([
-            //     `name[$i]` => 'required|max:50',
-            //     `price[$i]` => 'required|numeric',
-            // ],
-            // [
-            //     `name[$i].required` => '商品名は必須です。',
-            //     `price[$i].required` => '金額は必須です。',
-            // ]);
             $com = new Commodity;
             $image = new Image;
-            // echo var_dump($request->image[$i]);
             $com->name = $request->name[$i];
             $com->price = $request->price[$i];
             $com->description = $request->description[$i];
             $com->user_id = $request->user()->id;
             $com->shop_id = $value->id;
             $com->save();
-            // if ($request->img !== null) {
             $image->image = $request->image[$i]->store('images', 'public');
             $image->commodity_id = $com->id;
             $image->save();
-            // }
             $i++;
         }
 
@@ -129,11 +118,9 @@ class ShopController extends Controller
         foreach ($commodity_id as $com_id) {
             $img = Image::where('commodity_id', $com_id)->get();
             array_push($imgs,$img);
-            // echo var_dump(Image::where('id', $com_id)->get());
         }
         $reviews = Review::where('shop_id', $id)->get();
         $reviews->pluck('evaluation');
-        // $review = Review::select('evaluation')->get();
         $review = collect($reviews)->avg('evaluation');
         $users = User::all();
         $images = Image::all();
@@ -151,7 +138,6 @@ class ShopController extends Controller
         foreach ($commodity_id as $com_id) {
             $img = Image::where('commodity_id', $com_id)->get();
             array_push($images,$img);
-            // echo var_dump(Image::where('id', $com_id)->get());
         }
         $commodities = collect($commodity)->count();
         return view('shop.edit', ['shop' => $shop, 'commodity' => $commodity,'commodities' => $commodities, 'image' => $image, 'images' => $images]);
@@ -159,29 +145,46 @@ class ShopController extends Controller
 
     public function update(Request $request)
     {
-        $request->validate([
-            'sname' => 'required|max:50',
-            'sprice' => 'required|numeric',
-            'region' => 'required|max:100',
-            'datail' => 'required|max:200',
-            'photo' => 'required | numeric | digits_between:8,11',
-            `name` => 'required|max:50',
-            `price` => 'required|numeric',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:1024',
-        ],
-        [
-            'sname.required' => '店の名前は必須です。',
-            'sprice.required' => '平均金額は必須です。',
-            'region.required' => '住所は必須です。',
-            'datail.required' => '紹介文は必須です。',
-            'photo.required' => '電話番号は必須です。',
-            `name.required` => '商品名は必須です。',
-            `price.required` => '金額は必須です。',
-            'image.required' => '写真は必須です。',
-        ]);
+        // $request->validate([
+        //     'sname' => 'required|max:50',
+        //     'sprice' => 'required|numeric',
+        //     'region' => 'required|max:100',
+        //     'datail' => 'required|max:200',
+        //     'photo' => 'required | numeric | digits_between:8,11',
+        //     `name` => 'required|max:50',
+        //     `price` => 'required|numeric',
+        //     'image' => 'required|max:1024',
+        // ],
+        // [
+        //     'sname.required' => '店の名前は必須です。',
+        //     'sprice.required' => '平均金額は必須です。',
+        //     'region.required' => '住所は必須です。',
+        //     'datail.required' => '紹介文は必須です。',
+        //     'photo.required' => '電話番号は必須です。',
+        //     `name.required` => '商品名は必須です。',
+        //     `price.required` => '金額は必須です。',
+        //     'image.required' => '写真は必須です。',
+        // ]);
         $i = 0;
         $value = Shop::findOrFail($request->id);
-        $value->fill($request->all())->save();
+        // $value->fill($request->all())->save();
+        $value->sname = $request->input('sname');
+
+        $value->sprice = $request->input('sprice');
+
+        $value->region = $request->input('region');
+
+        $value->photo = $request->input('photo');
+
+        $value->datail = $request->input('datail');
+
+        $value->store_in = $request->input('store_in');
+
+        $value->take_out = $request->input('take_out');
+
+        $value->delivery = $request->input('delivery');
+        
+        $value->save();
         if ($request->img !== null) {
             $img = Image::find($request->id);
             $img->image = $request->img->store('images', 'public');
@@ -191,7 +194,6 @@ class ShopController extends Controller
         foreach ($request->num as $val) {
             $com = Commodity::find($val);
             $image= Image::find($val);
-            // echo var_dump($com);
             $com->name = $request->name[$i];
             $com->price = $request->price[$i];
             $com->description = $request->description[$i];
@@ -214,11 +216,9 @@ class ShopController extends Controller
         foreach ($commodity_id as $com_id) {
             $img = Image::where('commodity_id', $com_id)->get();
             array_push($imgs,$img);
-            // echo var_dump(Image::where('id', $com_id)->get());
         }
         $reviews = Review::where('shop_id', $request->id)->get();
         $reviews->pluck('evaluation');
-        // $review = Review::select('evaluation')->get();
         $review = collect($reviews)->avg('evaluation');
         $users = User::all();
         $images = Image::all();

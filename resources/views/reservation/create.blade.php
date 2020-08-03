@@ -53,7 +53,7 @@
                 @foreach ($image as $ima)
                     @if ($com->id === $ima->commodity_id)
                         <div class="card-bodys">
-                        <img src="storage/app/{{ $ima->image }}" width="100px" height="100px">
+                        <img src="{{ asset('storage/'. $ima->image) }}" width="100px" height="100px">
                         </div>
                     @endif
                     <input type="hidden" name="idss" value="{{$ima->id}}">
