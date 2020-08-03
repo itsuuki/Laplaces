@@ -4,7 +4,7 @@
 <script src="{{ asset('/js/delete-com.js') }}" defer></script>
 @section('content')
 <div class="all">
-<div class="user-post-page">
+  <div class="user-post-page">
 
     <div class="section s_07">
       <div class="accordion_one">
@@ -197,7 +197,7 @@
           </div>
         </div>
         </div>
-      </div>
+      <!-- </div> -->
 
     <div class="tab_item" id="item3">
       @if ($fav_shops !== null)
@@ -205,7 +205,7 @@
           @foreach ($fav_sho as $fav)
             <div class="card mb-4">
               <div class="card-header">
-              <a class="user-shop" href="/Shop/{{ $shop->id }}">
+              <a class="user-shop" href="/Shop/{{ $fav->id }}">
                 {{$fav->sname}}
               </a>
               </div>

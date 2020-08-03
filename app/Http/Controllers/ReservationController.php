@@ -32,16 +32,9 @@ class ReservationController extends Controller
         $minutes = range(0, 60);
         $shop = Shop::find($shop_id);
         $commodity = Commodity::where('shop_id', $shop_id)->get();
-        // if ($commodity === null) {
-            $coms = $commodity->pluck('id');
-            // echo var_dump($coms);
-            $commodities = collect($commodity)->count();
-            $image = Image::where('commodity_id', $coms)->get();
-        // } else {
-        //     $coms = null;
-        //     $commodities = null;
-        //     $image = null;
-        // }
+        $coms = $commodity->pluck('id');
+        $commodities = collect($commodity)->count();
+        $image = Image::all();
         return view('reservation.create', ['image' => $image, 'commodity' => $commodity, 'shop_id' => $shop_id, 'commodities' => $commodities, 'coms' => $coms, 'shop' => $shop, 'months' => $months, 'days' => $days, 'hours' => $hours, 'minutes' => $minutes]);
     }
 
@@ -49,7 +42,6 @@ class ReservationController extends Controller
     {
         $i = 0;
         foreach ($request->num as $val) {
-            // echo var_dump($request->ids);
             $reser = new Reservation;
             if ($request->remark[$i] !== 0) {
                 $reser->remark = $request->remark[$i];
@@ -69,7 +61,6 @@ class ReservationController extends Controller
             }
             $i++;
         }
-        // $order->save();
 
         return redirect('/home');
     }
@@ -97,8 +88,6 @@ class ReservationController extends Controller
 
     public function index($id)
     {
-        // echo var_dump($id);
-        // $reservations = Reservation::where('shop_id', $id)->get();
         $users = DB::table('reservations')
         ->join('users', 'reservations.user_id', '=', 'users.id')
         ->join('shops', 'reservations.shop_id', '=', 'shops.id')

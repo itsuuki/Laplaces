@@ -23,13 +23,13 @@ class CommodityController extends Controller
     {
         $request->validate([
             'name' => 'required|max:50',
-            'price' => 'required|numeric',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:1024',
+            // 'price' => 'required|numeric',
+            // 'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:1024',
         ],
         [
             'name.required' => '店の名前は必須です。',
-            'price.required' => '平均金額は必須です。',
-            'image.required' => '写真は必須です。',
+            // 'price.required' => '平均金額は必須です。',
+            // 'image.required' => '写真は必須です。',
         ]);
         $value = Shop::findOrFail($request->id);
         $i = 0;

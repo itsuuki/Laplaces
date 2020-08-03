@@ -118,7 +118,7 @@
             id="name"
             name="name[]"
             class="name"
-            value="{{ old('name', $com->name) }}"
+            value="{{ old('name[]', $com->name) }}"
             type="text"
             >
 
@@ -129,7 +129,7 @@
             id="price"
             name="price[]"
             class="price"
-            value="{{ old('price', $com->price) }}"
+            value="{{ old('price[]', $com->price) }}"
             type="text"
             >
 
@@ -141,7 +141,7 @@
                 name="description[]"
                 class="description"
                 rows="4"
-            >{{ old('description', $com->description) }}</textarea>
+            >{{ old('description[]', $com->description) }}</textarea>
 
             <input type="hidden" name="num[]" value="{{$com->id}}">
             <a class="deleteTarget" id="deleteTarget" data-com-id="{{$com->id}}">
@@ -153,12 +153,10 @@
               @if ($com->id === $ima->commodity_id && $ima->commodity_id !== null)
               <div class="card-bodys">
                 <img src="{{ asset('storage/'. $ima->image) }}" width="100px" height="100px">
-                <a class="deleteTarget-ima" id="deleteTarget-ima" data-ima-id="{{$ima->id}}">
+                <!-- <a class="deleteTarget-ima" id="deleteTarget-ima" data-ima-id="{{$ima->id}}">
                   削除
-                </a>
+                </a> -->
               </div>
-              @else
-                <input type="file" name="image[]">
               @endif
             @endforeach
           @endforeach
